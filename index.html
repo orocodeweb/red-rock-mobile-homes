@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Rock Mobile Homes — El Paso, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #c0392b;
+    --red-dark: #922b21;
+    --red-light: #e74c3c;
+    --sand: #d4b896;
+    --tan: #b8966e;
+    --dark: #0f0d0b;
+    --dark2: #1a1714;
+    --dark3: #251f1a;
+    --text: #f0e8df;
+    --text-muted: #9e8e7e;
+    --border: rgba(212,184,150,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(15,13,11,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .nav-logo-icon {
+    width: 44px; height: 44px;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--dark), var(--dark)) padding-box,
+                linear-gradient(135deg, #4dd0e1, #1565c0) border-box;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 700;
+    background: linear-gradient(135deg, #4dd0e1, #1565c0);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+  .nav-logo-icon::before {
+    content: '';
+    position: absolute; inset: 0;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--dark2), var(--dark2)) padding-box,
+                linear-gradient(135deg, #4dd0e1, #1565c0) border-box;
+  }
+  .nav-logo-r {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700;
+    background: linear-gradient(135deg, #4dd0e1, #1565c0);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; position: relative; z-index: 1;
+  }
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 2px; color: var(--text);
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sand); }
+  .nav-cta {
+    background: var(--red); color: white; text-decoration: none;
+    padding: 10px 24px; font-size: 13px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    transition: background 0.2s; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  }
+  .nav-cta:hover { background: var(--red-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 50%, rgba(192,57,43,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(212,184,150,0.06) 0%, transparent 60%),
+      var(--dark);
+  }
+  .hero-texture {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' fill='%23fff'/%3E%3C/svg%3E");
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 120px 48px 80px;
+    max-width: 720px;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--red-light);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 2px; background: var(--red);
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 120px);
+    line-height: 0.9; letter-spacing: 2px;
+    margin-bottom: 28px;
+  }
+  .hero-title span { color: var(--red-light); }
+  .hero-sub {
+    font-size: 18px; font-weight: 300; color: var(--text-muted);
+    line-height: 1.6; max-width: 480px; margin-bottom: 44px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red); color: white; text-decoration: none;
+    padding: 16px 36px; font-size: 14px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--border); color: var(--sand); text-decoration: none;
+    padding: 16px 36px; font-size: 14px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--sand); color: var(--text); }
+  .hero-stats {
+    position: absolute; right: 48px; bottom: 80px; z-index: 2;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .hero-stat { text-align: right; }
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 42px;
+    color: var(--sand); line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+  }
+  .hero-line {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+    right: 260px;
+  }
+
+  /* ── HOMES SECTION ── */
+  .section { padding: 100px 48px; }
+  .section-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 56px;
+  }
+  .section-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--red-light); margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 72px); letter-spacing: 1px; line-height: 1;
+  }
+  .section-link {
+    color: var(--sand); text-decoration: none; font-size: 13px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    display: flex; align-items: center; gap: 8px; padding-bottom: 4px;
+    border-bottom: 1px solid var(--border); transition: border-color 0.2s;
+  }
+  .section-link:hover { border-color: var(--sand); }
+
+  .homes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+  .home-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    aspect-ratio: 4/3;
+  }
+  .home-card:first-child { grid-row: span 2; aspect-ratio: auto; min-height: 600px; }
+  .home-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    filter: brightness(0.85) saturate(0.9);
+  }
+  .home-card:hover img { transform: scale(1.05); filter: brightness(1) saturate(1); }
+  .home-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(15,13,11,0.9) 0%, transparent 50%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 28px;
+  }
+  .home-card-tag {
+    display: inline-block; background: var(--red); color: white;
+    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px; margin-bottom: 10px; align-self: flex-start;
+    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+  }
+  .home-card-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .home-card-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+  .home-card-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--sand); text-decoration: none; transition: gap 0.2s;
+  }
+  .home-card-cta:hover { gap: 10px; }
+
+  /* ── WHY SECTION ── */
+  .why-section {
+    background: var(--dark2); padding: 100px 48px;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .why-section::before {
+    content: 'TEXAS';
+    position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 260px; color: rgba(255,255,255,0.02);
+    letter-spacing: -10px; white-space: nowrap;
+  }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; position: relative; }
+  .why-item { border-top: 1px solid var(--border); padding-top: 28px; }
+  .why-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--red);
+    opacity: 0.4; line-height: 1; margin-bottom: 12px;
+  }
+  .why-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .why-text { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── CALCULATOR ── */
+  .calc-section { padding: 100px 48px; background: var(--dark); }
+  .calc-wrap { display: grid; grid-template-columns: 420px 1fr; gap: 48px; align-items: start; }
+  .calc-panel {
+    background: var(--dark2); border: 1px solid var(--border); padding: 40px;
+  }
+  .calc-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .calc-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+  .field { margin-bottom: 20px; }
+  .field label {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .field label span { color: var(--sand); font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600; }
+  .field input[type="range"] {
+    width: 100%; -webkit-appearance: none; appearance: none;
+    height: 2px; background: var(--border); outline: none; cursor: pointer;
+  }
+  .field input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 16px; height: 16px;
+    background: var(--red); border-radius: 50%; cursor: pointer;
+  }
+  .field input[type="number"] {
+    width: 100%; background: var(--dark3); border: 1px solid var(--border);
+    color: var(--text); padding: 10px 14px; font-size: 15px; font-family: 'Barlow', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  .field input[type="number"]:focus { border-color: var(--red); }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .calc-result {
+    margin-top: 28px; padding: 24px; background: var(--dark3); border-left: 3px solid var(--red);
+  }
+  .calc-result-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .calc-result-value { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--sand); line-height: 1; }
+  .calc-result-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  .calc-totals { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .calc-total-item { background: var(--dark); padding: 14px; }
+  .calc-total-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .calc-total-value { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 600; color: var(--text); }
+  .btn-calc {
+    width: 100%; margin-top: 20px; background: var(--red); color: white; border: none; cursor: pointer;
+    padding: 16px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    transition: background 0.2s;
+  }
+  .btn-calc:hover { background: var(--red-light); }
+
+  /* Amortization Table */
+  .amort-panel {
+    background: var(--dark2); border: 1px solid var(--border);
+    max-height: 580px; overflow: hidden; display: flex; flex-direction: column;
+  }
+  .amort-head {
+    padding: 24px 28px 0;
+  }
+  .amort-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; }
+  .amort-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; margin-bottom: 16px; }
+  .amort-early { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .amort-early label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
+  .amort-early input {
+    background: var(--dark3); border: 1px solid var(--border);
+    color: var(--text); padding: 7px 12px; font-size: 13px; font-family: 'Barlow', sans-serif;
+    width: 120px; outline: none;
+  }
+  .amort-early input:focus { border-color: var(--red); }
+  .amort-early button {
+    background: var(--dark3); border: 1px solid var(--border); color: var(--sand);
+    padding: 7px 16px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; font-family: 'Barlow', sans-serif; font-weight: 600; transition: border-color 0.2s;
+  }
+  .amort-early button:hover { border-color: var(--sand); }
+  .amort-scroll { overflow-y: auto; flex: 1; }
+  .amort-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .amort-table thead tr {
+    position: sticky; top: 0; background: var(--dark3); z-index: 1;
+  }
+  .amort-table th {
+    padding: 10px 16px; text-align: left;
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted);
+    border-bottom: 1px solid var(--border); font-weight: 600;
+  }
+  .amort-table td {
+    padding: 9px 16px; border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+  }
+  .amort-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .amort-table .col-payment { color: var(--text); }
+  .amort-table .col-principal { color: var(--sand); }
+  .amort-table .col-interest { color: var(--red-light); }
+  .amort-table .col-balance { color: var(--text-muted); }
+  .amort-table tr.early-row { background: rgba(192,57,43,0.08); }
+  .amort-table tr.early-row td { color: #ff9985; }
+  .amort-table .badge-early {
+    display: inline-block; font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    background: var(--red); color: white; padding: 2px 5px; margin-left: 4px; vertical-align: middle;
+  }
+  .amort-summary {
+    padding: 14px 28px; background: var(--dark3); border-top: 1px solid var(--border);
+    display: flex; gap: 24px; font-size: 12px; flex-wrap: wrap;
+  }
+  .amort-sum-item { display: flex; flex-direction: column; gap: 2px; }
+  .amort-sum-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
+  .amort-sum-val { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 600; }
+  .saved { color: #4caf50; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 100px 48px;
+    background: var(--dark2); border-top: 1px solid var(--border);
+  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .contact-info { }
+  .contact-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+  .contact-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+    color: var(--red-light); font-size: 16px;
+  }
+  .contact-detail-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .contact-detail-val { font-size: 16px; font-weight: 500; }
+  .contact-detail-val a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .contact-detail-val a:hover { color: var(--sand); }
+  .contact-map {
+    background: var(--dark3); border: 1px solid var(--border);
+    aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px; position: relative; overflow: hidden;
+  }
+  .contact-map-text { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--text-muted); }
+  .contact-map::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(192,57,43,0.08), transparent 70%);
+  }
+  .map-dot {
+    width: 10px; height: 10px; background: var(--red); border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(192,57,43,0.2), 0 0 0 8px rgba(192,57,43,0.1);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(192,57,43,0.2), 0 0 0 8px rgba(192,57,43,0.1); }
+    50% { box-shadow: 0 0 0 8px rgba(192,57,43,0.15), 0 0 0 16px rgba(192,57,43,0.05); }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px; background: var(--dark);
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer .footer-brand {
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px;
+  }
+  footer .footer-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  footer .footer-right { font-size: 12px; color: var(--text-muted); text-align: right; }
+  footer .footer-right a { color: var(--text-muted); text-decoration: none; }
+  footer .footer-right a:hover { color: var(--sand); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both 0.1s; }
+  .hero-title { animation: fadeUp 0.7s ease both 0.25s; }
+  .hero-sub { animation: fadeUp 0.7s ease both 0.4s; }
+  .hero-btns { animation: fadeUp 0.7s ease both 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .section, .calc-section, .why-section, .contact-section { padding: 60px 24px; }
+    .hero-content { padding: 100px 24px 60px; }
+    .hero-stats { display: none; }
+    .hero-line { display: none; }
+    .homes-grid { grid-template-columns: 1fr; }
+    .home-card:first-child { grid-row: auto; min-height: 300px; }
+    .why-grid { grid-template-columns: 1fr; gap: 32px; }
+    .calc-wrap { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .section-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div style="position:relative;width:44px;height:44px;display:flex;align-items:center;justify-content:center;">
+      <div style="position:absolute;inset:0;border:2px solid transparent;background:linear-gradient(#1a1714,#1a1714) padding-box, linear-gradient(135deg,#4dd0e1,#1565c0) border-box;"></div>
+      <span class="nav-logo-r">R</span>
+    </div>
+    <span class="nav-brand">Red Rock Mobile Homes</span>
+  </div>
+  <div class="nav-links">
+    <a href="#homes">Inventory</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="nav-cta">View Listings</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">El Paso, Texas · Mobile Homes</div>
+    <h1 class="hero-title">YOUR HOME.<br><span>YOUR TERMS.</span></h1>
+    <p class="hero-sub">Quality mobile homes for West Texas families. Affordable pricing, flexible financing, and honest deals — right here in El Paso.</p>
+    <div class="hero-btns">
+      <a href="https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="btn-primary">Browse Available Homes</a>
+      <a href="#calculator" class="btn-outline">Calculate Payment</a>
+    </div>
+  </div>
+  <div class="hero-line"></div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">TX</div>
+      <div class="hero-stat-label">Licensed Dealer</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">0%</div>
+      <div class="hero-stat-label">Hidden Fees</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">EP</div>
+      <div class="hero-stat-label">El Paso Based</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOMES -->
+<section class="section" id="homes">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Available Inventory</div>
+      <h2 class="section-title">Our Homes</h2>
+    </div>
+    <a href="https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="section-link">See all listings →</a>
+  </div>
+  <div class="homes-grid">
+    <div class="home-card" onclick="window.open('https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#','_blank')">
+      <img src="/mnt/user-data/uploads/IMG_6206.jpeg" alt="Mobile Home 1">
+      <div class="home-card-overlay">
+        <span class="home-card-tag">Available Now</span>
+        <div class="home-card-title">Single Wide — El Paso</div>
+        <div class="home-card-desc">Move-in ready · Satellite included · West Texas land</div>
+        <a href="https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="home-card-cta">Inquire on Facebook →</a>
+      </div>
+    </div>
+    <div class="home-card" onclick="window.open('https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#','_blank')">
+      <img src="/mnt/user-data/uploads/IMG_5049.jpeg" alt="Mobile Home 2">
+      <div class="home-card-overlay">
+        <span class="home-card-tag">Available Now</span>
+        <div class="home-card-title">Classic Single Wide</div>
+        <div class="home-card-desc">Established lot · Great bones · Ready to make yours</div>
+        <a href="https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="home-card-cta">Inquire on Facebook →</a>
+      </div>
+    </div>
+    <div class="home-card" style="cursor:pointer" onclick="window.open('https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#','_blank')">
+      <div style="width:100%;height:100%;background:var(--dark3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px dashed var(--border);">
+        <div style="font-size:36px;color:var(--border)">+</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--text-muted)">More Listings</div>
+        <div style="font-size:12px;color:var(--text-muted)">View all on Facebook</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="section-head" style="margin-bottom:56px">
+    <div>
+      <div class="section-label">Why Red Rock</div>
+      <h2 class="section-title">Straight Talk.<br>Fair Deals.</h2>
+    </div>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <div class="why-title">Texas Local</div>
+      <div class="why-text">We're based right here in El Paso. We know the land, the weather, and what West Texas families need in a home. No out-of-state middlemen.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <div class="why-title">Flexible Financing</div>
+      <div class="why-text">Use our calculator to see real numbers before you buy. We work with buyers to find payment plans that fit real budgets — not just the best-case scenario.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <div class="why-title">No Runaround</div>
+      <div class="why-text">Call or message and talk directly to Ribel. No call centers, no automated systems. Just honest answers and a straightforward process from start to finish.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section" id="calculator">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Financing Tool</div>
+      <h2 class="section-title">Payment Calculator</h2>
+    </div>
+  </div>
+  <div class="calc-wrap">
+    <!-- Inputs -->
+    <div class="calc-panel">
+      <div class="calc-title">Estimate Your Payment</div>
+      <div class="calc-sub">Adjust the sliders or type values to calculate your monthly payment and full amortization schedule.</div>
+
+      <div class="field">
+        <label>Loan Amount <span id="lbl-loan">$45,000</span></label>
+        <input type="range" id="sl-loan" min="5000" max="200000" step="1000" value="45000" oninput="syncRange('loan',this.value)">
+        <input type="number" id="in-loan" value="45000" min="1000" max="999999" oninput="syncInput('loan',this.value)" style="margin-top:8px">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Interest Rate <span id="lbl-rate">7.5%</span></label>
+          <input type="range" id="sl-rate" min="1" max="25" step="0.1" value="7.5" oninput="syncRange('rate',this.value)">
+          <input type="number" id="in-rate" value="7.5" min="0.1" max="30" step="0.1" oninput="syncInput('rate',this.value)" style="margin-top:8px">
+        </div>
+        <div class="field">
+          <label>Term (Years) <span id="lbl-term">15 yrs</span></label>
+          <input type="range" id="sl-term" min="1" max="30" step="1" value="15" oninput="syncRange('term',this.value)">
+          <input type="number" id="in-term" value="15" min="1" max="30" oninput="syncInput('term',this.value)" style="margin-top:8px">
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div class="calc-result-label">Monthly Payment</div>
+        <div class="calc-result-value" id="monthly-payment">$416.00</div>
+        <div class="calc-result-sub">Principal + Interest</div>
+      </div>
+      <div class="calc-totals">
+        <div class="calc-total-item">
+          <div class="calc-total-label">Total Paid</div>
+          <div class="calc-total-value" id="total-paid">$74,890</div>
+        </div>
+        <div class="calc-total-item">
+          <div class="calc-total-label">Total Interest</div>
+          <div class="calc-total-value" id="total-interest">$29,890</div>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="buildAmort()">Generate Payment Schedule ▼</button>
+    </div>
+
+    <!-- Amortization Table -->
+    <div class="amort-panel" id="amort-panel">
+      <div class="amort-head">
+        <div class="amort-title">Amortization Schedule</div>
+        <div class="amort-sub">Month-by-month breakdown. Add an extra payment any month to see how it reduces your loan.</div>
+        <div class="amort-early">
+          <label>Month #</label>
+          <input type="number" id="early-month" min="1" placeholder="e.g. 12">
+          <label>Extra $</label>
+          <input type="number" id="early-amt" min="0" placeholder="e.g. 500">
+          <button onclick="buildAmort()">Apply</button>
+          <button onclick="document.getElementById('early-month').value='';document.getElementById('early-amt').value='';buildAmort()">Clear</button>
+        </div>
+      </div>
+      <div class="amort-scroll" id="amort-scroll">
+        <table class="amort-table" id="amort-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Payment</th>
+              <th>Principal</th>
+              <th>Interest</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="amort-body">
+            <tr><td colspan="5" style="text-align:center;padding:40px;color:var(--text-muted);font-size:13px;">Click "Generate Payment Schedule" to view your amortization table.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="amort-summary" id="amort-summary" style="display:none">
+        <div class="amort-sum-item">
+          <span class="amort-sum-label">Payoff Month</span>
+          <span class="amort-sum-val" id="sum-months">—</span>
+        </div>
+        <div class="amort-sum-item">
+          <span class="amort-sum-label">Total Paid</span>
+          <span class="amort-sum-val" id="sum-total">—</span>
+        </div>
+        <div class="amort-sum-item">
+          <span class="amort-sum-label">Total Interest</span>
+          <span class="amort-sum-val" id="sum-interest">—</span>
+        </div>
+        <div class="amort-sum-item">
+          <span class="amort-sum-label">Interest Saved</span>
+          <span class="amort-sum-val saved" id="sum-saved">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's Talk Homes</h2>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-detail-label">Phone</div>
+          <div class="contact-detail-val"><a href="tel:9154430461">(915) 443-0461</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <div class="contact-detail-val"><a href="mailto:American.s.development@gmail.com">American.s.development@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-detail-label">Location</div>
+          <div class="contact-detail-val">El Paso, Texas</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon" style="font-size:14px">FB</div>
+        <div>
+          <div class="contact-detail-label">Facebook</div>
+          <div class="contact-detail-val"><a href="https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#" target="_blank">View Our Listings</a></div>
+        </div>
+      </div>
+      <a href="https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="btn-primary" style="margin-top:16px;display:inline-block">Message Us on Facebook</a>
+    </div>
+    <div class="contact-map">
+      <div class="map-dot"></div>
+      <div class="contact-map-text">El Paso, TX</div>
+      <div style="font-size:12px;color:var(--text-muted)">West Texas · 915 Area Code</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Red Rock Mobile Homes</div>
+    <div class="footer-sub">El Paso, Texas · <a href="mailto:American.s.development@gmail.com">American.s.development@gmail.com</a></div>
+  </div>
+  <div class="footer-right">
+    <div>© 2025 Red Rock Mobile Homes. All rights reserved.</div>
+    <div style="margin-top:4px"><a href="https://www.facebook.com/ribel.gallegos?mibextid=wwXIfr&rdid=hRVcVGNRGFUgkaCK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B2qg2DyAA%2F%3Fmibextid%3DwwXIfr#" target="_blank">Facebook Listings</a></div>
+  </div>
+</footer>
+
+<script>
+  // ── STATE ──
+  const state = { loan: 45000, rate: 7.5, term: 15 };
+
+  function fmt(n) { return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0}); }
+  function fmtD(n) { return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+
+  function calcMonthly(P, annualRate, years) {
+    const r = annualRate / 100 / 12;
+    const n = years * 12;
+    if (r === 0) return P / n;
+    return P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+  }
+
+  function updateCalc() {
+    const { loan, rate, term } = state;
+    const monthly = calcMonthly(loan, rate, term);
+    const total = monthly * term * 12;
+    const interest = total - loan;
+    document.getElementById('monthly-payment').textContent = fmtD(monthly);
+    document.getElementById('total-paid').textContent = fmt(total);
+    document.getElementById('total-interest').textContent = fmt(interest);
+  }
+
+  function syncRange(field, val) {
+    val = parseFloat(val);
+    state[field] = val;
+    document.getElementById('in-' + field).value = val;
+    if (field === 'loan') document.getElementById('lbl-loan').textContent = fmt(val);
+    if (field === 'rate') document.getElementById('lbl-rate').textContent = val + '%';
+    if (field === 'term') document.getElementById('lbl-term').textContent = val + ' yrs';
+    updateCalc();
+  }
+
+  function syncInput(field, val) {
+    val = parseFloat(val) || 0;
+    state[field] = val;
+    const sl = document.getElementById('sl-' + field);
+    if (val >= parseFloat(sl.min) && val <= parseFloat(sl.max)) sl.value = val;
+    if (field === 'loan') document.getElementById('lbl-loan').textContent = fmt(val);
+    if (field === 'rate') document.getElementById('lbl-rate').textContent = val + '%';
+    if (field === 'term') document.getElementById('lbl-term').textContent = val + ' yrs';
+    updateCalc();
+  }
+
+  function buildAmort() {
+    const { loan, rate, term } = state;
+    const r = rate / 100 / 12;
+    const n = term * 12;
+    const monthly = calcMonthly(loan, rate, term);
+    const baseTotal = monthly * n;
+    const baseInterest = baseTotal - loan;
+
+    const earlyMonth = parseInt(document.getElementById('early-month').value) || 0;
+    const earlyAmt = parseFloat(document.getElementById('early-amt').value) || 0;
+
+    let balance = loan;
+    let totalPaid = 0;
+    let totalInt = 0;
+    let rows = '';
+    let actualMonths = 0;
+
+    for (let i = 1; i <= n; i++) {
+      if (balance <= 0) break;
+      const intPart = balance * r;
+      let payment = Math.min(monthly, balance + intPart);
+      let extra = 0;
+      if (i === earlyMonth && earlyAmt > 0) { extra = earlyAmt; }
+      let principal = payment - intPart + extra;
+      if (principal > balance) { principal = balance; payment = principal + intPart; extra = 0; }
+      balance -= principal - (extra > 0 ? extra : 0);
+      if (extra > 0) balance -= extra;
+      if (balance < 0.01) balance = 0;
+      totalPaid += payment + extra;
+      totalInt += intPart;
+      actualMonths = i;
+
+      const isEarly = (i === earlyMonth && earlyAmt > 0);
+      rows += `<tr class="${isEarly ? 'early-row' : ''}">
+        <td class="col-payment">${i}${isEarly ? '<span class="badge-early">Extra</span>' : ''}</td>
+        <td class="col-payment">${fmtD(payment + extra)}</td>
+        <td class="col-principal">${fmtD(principal)}</td>
+        <td class="col-interest">${fmtD(intPart)}</td>
+        <td class="col-balance">${fmtD(balance)}</td>
+      </tr>`;
+      if (balance === 0) break;
+    }
+
+    document.getElementById('amort-body').innerHTML = rows;
+
+    const saved = baseInterest - totalInt;
+    document.getElementById('sum-months').textContent = actualMonths + ' mo';
+    document.getElementById('sum-total').textContent = fmt(totalPaid);
+    document.getElementById('sum-interest').textContent = fmt(totalInt);
+    document.getElementById('sum-saved').textContent = saved > 0 ? fmt(saved) + ' saved!' : '$0';
+
+    const summary = document.getElementById('amort-summary');
+    summary.style.display = 'flex';
+
+    document.getElementById('amort-scroll').scrollTop = 0;
+  }
+
+  updateCalc();
+</script>
+</body>
+</html>
